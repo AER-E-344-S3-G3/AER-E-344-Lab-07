@@ -1,3 +1,75 @@
 \chapter{Methodology}
 \label{cp:methodology}
-This is the methodology section.
+\section{Apparatus}\label{sec:apparatus}
+An airfoil is positioned in the wind tunnel test chamber as seen in \autoref{fig: HotWireAnemometerFair}. Downstream of the airfoil is a hot wire anemometer. The data was collected by the data acquisition tool shown in \autoref{fig: dataTool} which reads the voltage data from the hot wire and saves it to a \verb|.txt| file.
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.75\linewidth]{Figures/IMG_3204.jpg}
+    \caption[A photograph of the hot wire anemometer downstream of the airfoil.]{The hot wire anemometer and the airfoil in the wind tunnel test chamber.}
+    \label{fig: HotWireAnemometerFair}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.75\linewidth]{Figures/IMG_3211.jpg}
+    \caption[A photograph of the data acquisition box.]{The data acquisition box which is connected to the hot wire anemometer and the data acquisition computer.}
+    \label{fig: dataTool}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.75\linewidth]{Figures/IMG_3210.jpg}
+    \caption[A photograph of the adjustable knob used to change the angle of attack of the airfoil.]{The adjustable knob used to change the angle of attack of the airfoil.}
+    \label{fig: AOAknob}
+\end{figure}
+
+When we collected the data at different heights, and we used the height adjustable knob to change the height as seen in \autoref{fig: AOAknob}
+
+\section{Procedures}\label{sec:procedures}
+
+\begin{enumerate}
+    \item Set the wind tunnel motor speed to \qty{15}{\hertz}. Wait for the flow to stabilize.
+    \item Set the \acrshort{aoa} to \qty{4}{\degree}.
+    \item Vertically move the hot wire anemometer from \qtyrange{0}{4}{\text{in.}} in \qty{0.2}{\text{in.}} increments.
+    \item After each adjustment, acquire and save the data to a \verb|.txt| data file.
+    \item Repeat Steps 3–4 using the following \acrshort{aoa}s: \numlist{4;8;12;16}.
+    \item Save the data to a flash drive for post-lab analysis.
+\end{enumerate}
+
+\section{Derivations}\label{sec:derivations}
+
+% Use this somewhere please :)
+\citep{lab7-manual}
+
+\begin{equation} \label{eq:calibration_polynomial_general}
+    \overline{U} = C_0 + C_1\overline{v} + C_2\overline{v}^2 + C_3\overline{v}^3 + C_4\overline{v}^4
+\end{equation}
+
+\begin{equation} \label{eq:calibration_polynomial}
+    \overline{U} = \num{-10248.1714} + \num{34446.6867}\overline{v} - \num{43230.9413}\overline{v}^2 + \num{24021.8937}\overline{v}^3 - \num{4982.7570}\overline{v}^4
+\end{equation}
+
+\begin{equation} \label{eq:u_rms}
+    u_\text{rms} = \left. \frac{\partial \overline{U}}{\partial v}\right|_{\overline{v}} = \left[C_1 + 2C_2\overline{v} + 3C_3\overline{v}^2 + 4C_4\overline{v}^3\right]v_\text{rms}
+\end{equation}
+
+\begin{equation} \label{eq:momentum_thickness}
+    \theta = \int_0^Y\frac{u}{U_e}\left(1 - \frac{u}{U_e}\right)dy
+\end{equation}
+
+\begin{equation} \label{eq:C_d}
+    C_d = \frac{2\theta}{L}
+\end{equation}
+
+\begin{equation} \label{eq:reynolds}
+    \text{Re} = \frac{\rho U_\infty c}{\mu_\infty}
+\end{equation}
+
+\begin{equation} \label{eq:boundary_layer_laminar}
+    \frac{\delta}{x} = \frac{5.0}{\sqrt{\text{Re}_x}}
+\end{equation}
+
+\begin{equation} \label{eq:boundary_layer_turbulent}
+    \frac{\delta}{x} = \frac{0.37}{\text{Re}_x^\frac{1}{5}}
+\end{equation}
