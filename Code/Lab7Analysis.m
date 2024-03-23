@@ -61,7 +61,7 @@ legend(aoa + "° AOA");
 xticks = get(gca, 'XTick');
 abs_xticks = abs(xticks);
 set(gca, 'XTickLabel', abs_xticks);
-%saveas(gcf, figure_dir + title_str + ".svg");
+saveas(gcf, figure_dir + "Position vs. Air Velocity at 4 to 16 AOA.svg");
 
 %% Position vs. Voltage Graph
 % figure(figure_count);
@@ -105,7 +105,7 @@ for i = 1:row
     xticks = get(gca, 'XTick');
     abs_xticks = abs(xticks);
     set(gca, 'XTickLabel', abs_xticks);
-    %saveas(gcf, figure_dir + title_str + ".svg");
+    saveas(gcf, figure_dir + "Ydelta vs. UUe at " + aoa(i) + " AOA.svg");
 end
 
 %% Normalized Position vs. Turbulence Intensity 
@@ -136,7 +136,7 @@ for i = 1:row
     xticks = get(gca, 'XTick');
     abs_xticks = abs(xticks);
     set(gca, 'XTickLabel', abs_xticks);
-    %saveas(gcf, figure_dir + title_str + ".svg");
+    saveas(gcf, figure_dir + "Ydelta vs. Turbulence Intensity at " + aoa(i) + " AOA.svg");
 end
 
 %% Vortex Shedding Frequency
@@ -178,7 +178,8 @@ for i = 1:4
     ylabel('|P1(f)|');
     ylim([0,.3]);
     legend({'Inside Wake', 'Outisde Wake'})
-    %saveas(gcf, figure_dir + title_str + ".svg");
+    grid on;
+    saveas(gcf, figure_dir + "Single-Sided Amplitude Spectrum at " + aoa(i) + " AOA.svg");
 end
 
 %% Momentum Thickness
