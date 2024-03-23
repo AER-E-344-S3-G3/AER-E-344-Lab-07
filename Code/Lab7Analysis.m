@@ -20,6 +20,8 @@ L = 0.101; % [m]
 % Curve fit equation for voltage (x) vs air speed (y) from Lab 6
 v_vs_U = @(x) -4982.7570*x.^4 + 24021.8937*x.^3 + -43230.9413*x.^2 + 34446.6867*x + -10248.1714;
 Cf = [34446.6867 -43230.9413 24021.8937 -4982.7570];
+% v_vs_U = @(x) (6553.11832)*x^4 + (-30178.43731)*x^3 + (52087.72644)*x^2 + (-39881.78843)*x + (11425.60699);
+% Cf = [-39881.78843 52087.72644 -30178.43731 6555.1183];
 row = length(aoa);
 col = length(pos);
 volt = zeros(row, col); % [V] voltage
@@ -56,6 +58,9 @@ xlabel("Position [in]");
 ylabel("Velocity [m/s]");
 grid on;
 legend(aoa + "° AOA");
+xticks = get(gca, 'XTick');
+abs_xticks = abs(xticks);
+set(gca, 'XTickLabel', abs_xticks);
 %saveas(gcf, figure_dir + title_str + ".svg");
 
 %% Position vs. Voltage Graph
@@ -77,6 +82,9 @@ legend(aoa + "° AOA");
 % Boundry Layer determined from graph estimations (looking/making it up)
 delta = [0.4, 1, 1.5, 3]; % [in]
 delta_pos = 1.8; % [in] try to make position centered at wake
+y_right = .2 : .2 : max(pos) - delta_pos;
+y_left = min(pos) - delta_pos : .2 : 0;
+y_pos = [y_left,y_right];
 
 %% Normalized Position vs. Normalized Velocity Graph
 y_delta = zeros(row,col);
@@ -84,7 +92,7 @@ U_Ue = zeros(row,col);
 for i = 1:row
     figure(figure_count)
     figure_count = figure_count+1;
-    y_delta(i,:) = pos/delta(i);
+    y_delta(i,:) = y_pos/delta(i);
     U_Ue(i,:) = U(i,:)/Ue;
     plot(y_delta(i,:), U_Ue(i,:));
     fontname("Times New Roman");
@@ -94,6 +102,9 @@ for i = 1:row
     xlabel("Y/\delta");
     ylabel("U/Ue");
     grid on;
+    xticks = get(gca, 'XTick');
+    abs_xticks = abs(xticks);
+    set(gca, 'XTickLabel', abs_xticks);
     %saveas(gcf, figure_dir + title_str + ".svg");
 end
 
@@ -122,6 +133,9 @@ for i = 1:row
     xlabel("Y/\delta");
     ylabel("Turbulence Intensity");
     grid on;
+    xticks = get(gca, 'XTick');
+    abs_xticks = abs(xticks);
+    set(gca, 'XTickLabel', abs_xticks);
     %saveas(gcf, figure_dir + title_str + ".svg");
 end
 
