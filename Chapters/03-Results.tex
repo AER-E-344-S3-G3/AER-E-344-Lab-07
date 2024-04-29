@@ -1,9 +1,65 @@
 \chapter{Results}
 \label{cp:results}
 
+\autoref{fig:boundary_layer_thickness_theory} shows the theoretical boundary layer thickness as a function of the distance from the leading edge of a hypothetical flat plate using \autoref{eq:boundary_layer_laminar} and \autoref{eq:boundary_layer_turbulent}.
+
 \begin{figure}[htpb]
     \centering
     \includesvg[width=0.75\linewidth]{Figures/boundary_layer_thickness.svg}
     \caption[A graph of the boundary layer thickness vs distance from the leading edge.]{The boundary layer thickness as a function of the distance from the leading edge of a theoretical flat plate.}
     \label{fig:boundary_layer_thickness_theory}
 \end{figure}
+
+\autoref{fig:Ydelta_vs_UUe_4AoA} shows the relationship between fluid velocity normalized against the free stream velocity and the distance away from the surface of the airfoil normalized with the estimated boundary later thickness from \autoref{fig:position_vs_vel_4to16AoA}. The minimum normalized fluid velocity is located behind the airfoil surface.
+
+\begin{figure}[htpb]
+    \centering
+    \includesvg[width=0.75\linewidth]{Figures/Ydelta vs. UUe at 4 AOA.svg}
+    \caption[A graph of the normalized air speed as a function of the position behind the airfoil at a four degree angle of attack.]{The normalized air speed as a function of the vertical position behind the airfoil at \qty{4}{\degree} \acrshort{aoa}.}
+    \label{fig:Ydelta_vs_UUe_4AoA}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includesvg[width=0.75\linewidth]{Figures/Position vs. Air Velocity at 4 to 16 AOA.svg}
+    \caption[A graph of the normalized air speed as a function of the position behind the airfoil at different angles of attack.]{The normalized air speed as a function of the vertical position behind the airfoil at \qtyrange{4}{16}{\degree} \acrshort{aoa}s.}
+    \label{fig:position_vs_vel_4to16AoA}
+\end{figure}
+
+\autoref{fig:fft_4AoA} shows the single sided amplitude, where the data inside the wake is at a $Y/\delta$ of 0 and the data outside the wake is from the lowest possible position by the anemometer below the airfoil. \vspace{1in}
+\vspace{1in}
+\begin{figure}[htpb]
+    \centering
+    \includesvg[width=0.75\linewidth]{Figures/Ydelta vs. Turbulence Intensity at 4 AOA.svg}
+    \caption[A graph of the turbulence intenssity as a function of the position behind the airfoil at a four degree angle of attack.]{The turbulence intensity as a function of the vertical position behind the airfoil at \qty{4}{\degree} \acrshort{aoa}.}
+    \label{fig:Ydelta_vs_turbulence_4AoA}
+\end{figure}
+
+\begin{figure}[htpb]
+    \centering
+    \includesvg[width=0.75\linewidth]{Figures/Single-Sided Amplitude Spectrum at 4 AOA.svg}
+    \caption[A graph of the single-sided amplitude spectrum inside and outside the wake at a four degree angle of attack.]{The single-sided amplitude spectrum inside and outside the wake region at a \qty{4}{\degree} \acrshort{aoa}.}
+    \label{fig:fft_4AoA}
+\end{figure}
+
+The Cd calculated at each angle of attack from \autoref{eq:C_d} is as follows:
+\begin{center}
+    \qty{4}{\degree} $= 0.1277$\\
+    \qty{8}{\degree} $= 0.1371$\\
+    \qty{12}{\degree} $= 0.1469$\\
+    \qty{16}{\degree} $= 0.1359$
+\end{center}
+
+Using \autoref{eq:Re} and the subsequent parameters, we find the Reynolds number of about \num{1.322e5} for the airfoil wake measurements.
+
+\begin{equation}\label{eq:Re}
+    Re = \frac{\rho V L}{\mu}
+\end{equation}
+
+\begin{enumerate}
+    \item[] $\rho = \qty{1.225}{\kilogram\per\meter^3}$
+    \item[] $\mu = \qty{18.18e-06}{\pascal\second}$
+    \item[] $L = \qty{0.101}{\meter}$
+    \item[] $V = \qty{19.4}{\meter\per\second}$
+    \item[] $Re = \num{1.322e5}$
+\end{enumerate}

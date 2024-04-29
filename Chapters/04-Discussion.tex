@@ -1,3 +1,30 @@
 \chapter{Discussion}
 \label{cp:discussion}
 
+\section{Wake Analysis}
+
+The data in our lab is clearly erroneous. The sources of this error are discussed in more detail in \autoref{sec:error}. Beginning with the \gls{Ybydelta} vs. \gls{UbyUe} graph shown in \autoref{fig:Ydelta_vs_UUe_4AoA}, we see the shape generally matches our theoretical expectations, although the region outside the wake, where we would expect the flow to be laminar, is far less uniform than we measured in previous labs. This is only exacerbated when we increase the angle of attack as shown in the additional \gls{Ybydelta} vs. \gls{UbyUe} graphs in \autoref{sec:additional_figures}. At \acrshort{aoa}s above \qty{4}{\degree}, the wake region disappears completely, implying either instrumentation error or that the wake region covers the entire width of measurements gathered. Since the boundary layer thickness we estimated in pre-lab (see \autoref{fig:boundary_layer_thickness_theory}) was on the scale of \qtyrange{0}{2.5}{\centi\meter}, although it is possible, it seems unlikely the wake region exceeded the \qtyrange{0}{4}{\text{in.}} range we measured downstream of the airfoil. As seen in \autoref{fig:position_vs_vel_4to16AoA}, the measurements taken with an \acrshort{aoa} above \qty{4}{\degree} seem to have no correlation whatsoever and look more like noise. Even the \qty{4}{\degree} \acrshort{aoa} measurements may have been coincidental noise.
+
+\autoref{fig:Ydelta_vs_turbulence_4AoA} shows the turbulence intensity profile downstream of the airfoil at an \acrshort{aoa} of \qty{4}{\degree}. Based on the example results we were shown prior to the lab, these turbulence intensity values should have generally been a reflection of the velocity profile—\textit{i.e.}, when the velocity in the wake was at a low, the turbulence intensity should have been at a high—and they should have been positive values in the range of \numrange{2}{3}. \autoref{fig:Ydelta_vs_turbulence_4AoA} has neither the appropriate shape, magnitude, nor sign, and the turbulence intensity graphs for the higher \acrshort{aoa}s (see \autoref{sec:additional_figures}) are no better. Again, the reason for this is discussed in greater detail in \autoref{sec:error}, but we suspect this error is compounded by an invalid hot wire calibration polynomial.
+
+The spectrum analysis in \autoref{fig:fft_4AoA} is equally meaningless. There do appear to be significant spikes around \qtylist{2000;4000}{\hertz}, perhaps implying there was some type of vortex shedding or turbulent behavior occurring. But to assume that were true would ignore the obvious lack of correlation over the entire frequency spectrum. The \acrfull{fft} looks far more like random noise. In the examples we observed prior to the lab, at low angles of attack, the \acrshort{fft} should have been fairly unexcited, which is obviously not what our data shows.
+
+The Reynolds Number calculation is reasonable considering the free stream velocity value was determined using the lab two motor frequency vs air speed relationship. Despite the unreliable data from the anemometer, the coefficient of drag at each angle of attack almost follows the expected trend. As the angle of attack increases, the \gls{C_d} would increase. The \gls{C_d} does increase for angles of attack from \qtyrange{4}{12}{\unit{\degree}}, but then decreases at an \acrshort{aoa} of \num{16}\unit{\degree}. Since the data is unreliable, as discussed in \autoref{sec:error}, this is likely a coincidence.
+
+\section{Sources of Error} \label{sec:error}
+
+For our data to be this deviant from the theoretical predictions, we must assume there were significant sources of error in the experimental setup, data analysis, or both. While we absolutely cannot vouch for our analysis with complete certainty—we would need more time to validate our calculations on different data sets—we expect the most significant error come from two sources: the hot wire setup and our hot wire calibration polynomial.
+
+Any number of factors could have affected the hot wire data. just to name a few potential sources of error: the electrical wires connected to the hot wire apparatus may have had a loose connection at either terminal; there may have been some type of electromagnetic radiation causing noise or interference on the wires; the hot wire apparatus may have been broken, misaligned, or had a short. It is also possible the data acquisition software was misconfigured, although, we would expect this to result in data of the wrong order of magnitude, not the wrong shape entirely. A mechanical flaw in the apparatus is more likely given the random nature of the data we collected. Throughout the data, there are segments that seem reasonable—\textit{e.g.}, the \qty{4}{\degree} \acrshort{aoa} data—but in general, the data seems to have had significant noise added into it.
+
+In addition to the noisy data, our hot wire calibration polynomial may be invalid for this hot wire anemometer. When exploring potential problems in our analysis script, we tried using the hot wire calibration polynomial calculated by a different group in our section, and we found our turbulence intensity graphs changed shape and magnitude significantly. Although they did not mirror our velocity profiles as expected, they did at least become positive.
+
+\section{Future Work}
+
+Due to the potentially erroneous hot wire data or calibration data, we were unable to analyze the wake region of the airfoil. We also cannot prove definitively the source of our error, but we think it is most likely due to noise in the hot wire anemometer apparatus. To improve our results, we would take the following corrective measures:
+
+\begin{enumerate}
+    \item Test our analysis script on a set of a reliable data and compare the results to the expected values—fixing bugs and making changes as necessary.
+    \item Re-calibrate and verify the functionality and accuracy of the hot wire anemometer apparatus.
+    \item Confirm the settings in the data acquisition software and repeat the experimental data collection.
+\end{enumerate}

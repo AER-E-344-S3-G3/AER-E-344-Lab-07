@@ -39,8 +39,7 @@ When we collected the data at different heights, and we used the height adjustab
 
 \section{Derivations}\label{sec:derivations}
 
-% Use this somewhere please :)
-\citep{lab7-manual}
+The turbulence intensity is found using the \acrfull{rms} of the velocity fluctuations over the mean velocity. \citep{lab7-manual} The mean velocity at each position around the airfoil is determined with the voltage data from the anemometer and the calibration polynomial from lab six in the form of \autoref{eq:calibration_polynomial_general}. The full calibration polynomial from lab six is \autoref{eq:calibration_polynomial}.
 
 \begin{equation} \label{eq:calibration_polynomial_general}
     \overline{U} = C_0 + C_1\overline{v} + C_2\overline{v}^2 + C_3\overline{v}^3 + C_4\overline{v}^4
@@ -49,22 +48,25 @@ When we collected the data at different heights, and we used the height adjustab
 \begin{equation} \label{eq:calibration_polynomial}
     \overline{U} = \num{-10248.1714} + \num{34446.6867}\overline{v} - \num{43230.9413}\overline{v}^2 + \num{24021.8937}\overline{v}^3 - \num{4982.7570}\overline{v}^4
 \end{equation}
+The derivative of the calibration polynomial equation with respect to the mean voltage multiplied by the manometer voltage \acrshort{rms} will give the \acrshort{rms} of the velocity fluctuations at each position of the manometer around the airfoil (see \autoref{eq:u_rms}). Finally, the turbulence intensity is calculated in \autoref{eq:ti}.
 
 \begin{equation} \label{eq:u_rms}
     u_\text{rms} = \left. \frac{\partial \overline{U}}{\partial v}\right|_{\overline{v}} = \left[C_1 + 2C_2\overline{v} + 3C_3\overline{v}^2 + 4C_4\overline{v}^3\right]v_\text{rms}
 \end{equation}
-
-\begin{equation} \label{eq:momentum_thickness}
+\begin{equation}\label{eq:ti}
+    TI = u_\text{rms} / \overline{U}
+\end{equation}
+The momentum thickness is related to the coefficient of drag through equation \autoref{eq:C_d}. However, the momentum thickness must first be calculated through \autoref{eq:momentum_thickness}. In this lab, the integral was determined using the midpoint Riemann sum starting behind the surface of the airfoil and ending at the lowest position of the anemometer. The distance between each anemometer measurement was \num{0.2}\unit{\text{in.}}
+\begin{equation} \label{eq:momentum_thickness}. 
     \theta = \int_0^Y\frac{u}{U_e}\left(1 - \frac{u}{U_e}\right)dy
 \end{equation}
 
 \begin{equation} \label{eq:C_d}
     C_d = \frac{2\theta}{L}
 \end{equation}
+The vortex shedding frequency graphs were created by taking the raw voltage data at two positions of each angle of attack, one inside the wake and one outside. A fast Fourier Transform of the raw data with a sampling frequency of \qty{10000}{\hertz} is used to graph a single-sided amplitude spectrum and in the hopes of finding the vortex shedding frequency. 
 
-\begin{equation} \label{eq:reynolds}
-    \text{Re} = \frac{\rho U_\infty c}{\mu_\infty}
-\end{equation}
+The following equations (\autoref{eq:boundary_layer_laminar} and \autoref{eq:boundary_layer_turbulent}) are theoretical estimations of the boundary layer thickness at a distance $x$ over a flat plate. 
 
 \begin{equation} \label{eq:boundary_layer_laminar}
     \frac{\delta}{x} = \frac{5.0}{\sqrt{\text{Re}_x}}
